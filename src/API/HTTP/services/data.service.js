@@ -4,7 +4,7 @@ import {getToken} from '../../../asyncStorage/token';
 class DataService {
   login = async data => {
     try {
-      return http.post('/auth', data);
+      return http.post('/auth/serviceSeller', data);
     } catch (e) {
       console.log(e);
     }
@@ -20,7 +20,7 @@ class DataService {
 
   sendCode = async data => {
     try {
-      return http.post('/user/send-code', data);
+      return http.post('/serviceSeller/send-code', data);
     } catch (e) {
       console.log(e);
     }
@@ -31,7 +31,7 @@ class DataService {
       let token = await getToken();
 
       return http.post(
-        '/auth/logout',
+        '/auth/serviceSeller/logout',
         {},
         {
           headers: {
@@ -46,7 +46,15 @@ class DataService {
 
   register = async data => {
     try {
-      return http.post('/user', data);
+      return http.post('/serviceSeller', data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  addPromo = async data => {
+    try {
+      return http.post('/serviceSeller/addPromo', data);
     } catch (e) {
       console.log(e);
     }
@@ -54,45 +62,31 @@ class DataService {
 
   changePassword = async data => {
     try {
-      return http.put('/user/change-password', data);
+      return http.put('/serviceSeller/change-password', data);
     } catch (e) {
       console.log(e);
     }
   };
 
-  updatePassword = async data => {
-    try {
-      let token = await getToken();
+  // updatePassword = async data => {
+  //   try {
+  //     let token = await getToken();
 
-      return http.put('/user/updatePassword', data, {
-        headers: {
-          Authorization: token,
-        },
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  //     return http.put('/serviceSeller/updatePassword', data, {
+  //       headers: {
+  //         Authorization: token,
+  //       },
+  //     });
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   getUserData = async () => {
     try {
       let token = await getToken();
 
-      return http.get('/user', {
-        headers: {
-          Authorization: token,
-        },
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  subscribe = async () => {
-    try {
-      let token = await getToken();
-
-      return http.get('/feed/user/getOffers', {
+      return http.get('/serviceSeller', {
         headers: {
           Authorization: token,
         },

@@ -24,7 +24,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 const w = Dimensions.get('window').width;
 const h = Dimensions.get('window').height;
 
-export const ContactUsScreen = ({navigation: {goBack, navigate}}) => {
+export const ContactUsScreen = ({navigation: {goBack}}) => {
   const [name, setName] = useState('');
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
@@ -42,6 +42,7 @@ export const ContactUsScreen = ({navigation: {goBack, navigate}}) => {
       .then(res => {
         if (res.status === 201) {
           AlertBox('Успішно!', 'Ваше повідомлення отримане.');
+          goBack();
 
           setName('');
           setTitle('');

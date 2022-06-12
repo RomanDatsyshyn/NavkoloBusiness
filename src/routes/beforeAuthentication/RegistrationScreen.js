@@ -30,16 +30,21 @@ export const RegistrationScreen = ({navigation, navigation: {goBack}}) => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [kindOfActivity, setKindOfActivity] = useState('');
+  const [promo, setPromo] = useState('');
 
   const [nameErrorMessage, setNameErrorMessage] = useState('');
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [kindOfActivityErrorMessage, setKindOfActivityErrorMessage] =
+    useState('');
 
   const isNameCorrect = name.length < 2;
   const isPhoneCorrect = phone.length < 10;
   const isEmailCorrect = !email.includes('@');
   const isPasswordCorrect = password.length < 5;
+  const isKindOfActivityCorrect = kindOfActivity.length < 4;
 
   const registrationRequest = async data => {
     await DataService.register(data)
@@ -53,12 +58,24 @@ export const RegistrationScreen = ({navigation, navigation: {goBack}}) => {
       });
   };
 
+  const addPromocodeRequest = async data => {
+    await DataService.addPromo(data).catch(e => {
+      console.log(e);
+    });
+  };
+
   const signUp = () => {
     registrationRequest({
       name,
       phone,
       email,
       password,
+      kindOfActivity,
+    });
+    addPromocodeRequest({
+      cardNumber: promo,
+      phone: phone,
+      typeOfApp: 'NB',
     });
   };
 
@@ -67,16 +84,20 @@ export const RegistrationScreen = ({navigation, navigation: {goBack}}) => {
     setPhoneErrorMessage('');
     setEmailErrorMessage('');
     setPasswordErrorMessage('');
+    setKindOfActivityErrorMessage('');
 
     isNameCorrect && setNameErrorMessage('Введіть мінімум 2 літери');
     isPhoneCorrect && setPhoneErrorMessage('Введіть мінімум 10 цифр');
     isEmailCorrect && setEmailErrorMessage('Введіть email коректно');
     isPasswordCorrect && setPasswordErrorMessage('Введіть мінімум 5 символів');
+    isKindOfActivityCorrect &&
+      setKindOfActivityErrorMessage('Введіть мінімум 4 символи');
 
     !isNameCorrect &&
       !isPhoneCorrect &&
       !isEmailCorrect &&
       !isPasswordCorrect &&
+      !isKindOfActivityCorrect &&
       signUp();
   };
 
@@ -97,6 +118,16 @@ export const RegistrationScreen = ({navigation, navigation: {goBack}}) => {
       !isPasswordCorrect &&
       setPasswordErrorMessage('');
   }, [passwordErrorMessage, setPasswordErrorMessage, isPasswordCorrect]);
+
+  useEffect(() => {
+    kindOfActivityErrorMessage !== '' &&
+      !isKindOfActivityCorrect &&
+      setKindOfActivityErrorMessage('');
+  }, [
+    kindOfActivityErrorMessage,
+    setKindOfActivityErrorMessage,
+    isKindOfActivityCorrect,
+  ]);
 
   return (
     <SafeAreaView style={styles.backgroundSafeArea}>
@@ -148,6 +179,27 @@ export const RegistrationScreen = ({navigation, navigation: {goBack}}) => {
                   error={emailErrorMessage}
                   value={email}
                   onChange={e => setEmail(e)}
+                />
+
+                <View style={styles.someSpace} />
+
+                <Input
+                  label={'Хто ви?'}
+                  isShowLabel={true}
+                  placeholder="Дизайнер"
+                  error={kindOfActivityErrorMessage}
+                  value={kindOfActivity}
+                  onChange={e => setKindOfActivity(e)}
+                />
+
+                <View style={styles.someSpace} />
+
+                <Input
+                  label={'Промокод:'}
+                  isShowLabel={true}
+                  placeholder="Не обов'язково"
+                  value={promo}
+                  onChange={e => setPromo(e)}
                 />
 
                 <View style={styles.someSpace} />
