@@ -1,15 +1,9 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {
-  AppState,
-  View,
-  StyleSheet,
-  Dimensions,
-  ScrollView,
-  Text,
-} from 'react-native';
+import {AppState, View, StyleSheet, Dimensions, ScrollView} from 'react-native';
 const {io} = require('socket.io-client');
 
 import FeedItem from './FeedItem';
+import TextBlock from '../../../components/TextBlock';
 
 import {colors} from '../../../assets/colors';
 import DataService from '../../../API/HTTP/services/data.service';
@@ -69,7 +63,7 @@ export const FeedTab = ({navigation, route}) => {
 
   const connect = useCallback(
     id => {
-      socket.emit('join', {room: `userFeed-${id}`});
+      socket.emit('join', {room: `serviceSellerFeed-${id}`});
       socket.on('message', data => {
         setFeed(data);
       });
@@ -79,7 +73,7 @@ export const FeedTab = ({navigation, route}) => {
 
   const unsubscribe = useCallback(
     id => {
-      socket.emit('unsubscribe', {room: `userFeed-${id}`});
+      socket.emit('unsubscribe', {room: `serviceSellerFeed-${id}`});
     },
     [socket],
   );
@@ -120,7 +114,9 @@ export const FeedTab = ({navigation, route}) => {
           <View style={styles.spacing} />
         </ScrollView>
       )}
-      {feed.length === 0 && <Text>No one propositions</Text>}
+      {feed.length === 0 && (
+        <TextBlock text={'Поки що замовлень немає'} size={3} deepBlue />
+      )}
     </View>
   );
 };
