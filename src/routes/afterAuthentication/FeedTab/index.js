@@ -1,11 +1,19 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {AppState, View, StyleSheet, Dimensions, ScrollView} from 'react-native';
+import {
+  AppState,
+  View,
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+  Image,
+} from 'react-native';
 const {io} = require('socket.io-client');
 
 import FeedItem from './FeedItem';
 import TextBlock from '../../../components/TextBlock';
 
 import {colors} from '../../../assets/colors';
+import {images} from '../../../assets/images';
 import DataService from '../../../API/HTTP/services/data.service';
 
 const w = Dimensions.get('window').width;
@@ -114,8 +122,12 @@ export const FeedTab = ({navigation, route}) => {
           <View style={styles.spacing} />
         </ScrollView>
       )}
+
       {feed.length === 0 && (
-        <TextBlock text={'Поки що замовлень немає'} size={3} deepBlue />
+        <>
+          <Image source={images.feedTabImage} style={styles.image} />
+          <TextBlock text={'Поки що замовлень немає'} size={2} deepBlue />
+        </>
       )}
     </View>
   );
@@ -137,5 +149,14 @@ const styles = StyleSheet.create({
   },
   spacing: {
     height: w * 0.05,
+  },
+  image: {
+    width: w * 0.85,
+    height: h * 0.28,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    zIndex: 1,
+    marginTop: -h * 0.1,
+    marginBottom: h * 0.05,
   },
 });
