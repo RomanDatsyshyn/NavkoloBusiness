@@ -14,6 +14,7 @@ import IsUserLoggedScreen from '../routes/IsUserLoggedScreen';
 
 import NewPasswordScreen_profile from '../routes/afterAuthentication/ProfileTab/NewPasswordScreen';
 import ChangeStatusScreen_profile from '../routes/afterAuthentication/ProfileTab/ChangeStatusScreen';
+import ContactMeScreen_profile from '../routes/afterAuthentication/ProfileTab/ContactMeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -73,6 +74,11 @@ export const RootNavigation = () => {
       <Stack.Screen
         name="ChangeStatusScreen_profile"
         component={ChangeStatusScreen_profile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ContactMeScreen_profile"
+        component={ContactMeScreen_profile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

@@ -72,7 +72,15 @@ export const ProfileTab = ({navigation}) => {
 
           <Button
             label={'Мій Instagram, Telegram...'}
-            // onPress={() => navigation.navigate('HistoryScreen')}
+            onPress={() => navigation.navigate('ContactMeScreen_profile')}
+            pink
+          />
+
+          <View style={styles.spacing} />
+
+          <Button
+            label={'Змінити номер'}
+            // onPress={() => navigation.navigate('ChangeStatusScreen_profile')}
             pink
           />
 
@@ -116,7 +124,7 @@ const styles = StyleSheet.create({
     height: w * 0.35,
     borderRadius: w * 0.5,
     marginBottom: w * 0.02,
-    marginTop: h * 0.07,
+    marginTop: h * 0.03,
   },
   userName: {
     marginTop: w * 0.01,
