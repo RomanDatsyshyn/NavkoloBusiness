@@ -13,6 +13,7 @@ import ContactUsScreen from '../routes/contactUsScreen';
 import IsUserLoggedScreen from '../routes/IsUserLoggedScreen';
 
 import NewPasswordScreen_profile from '../routes/afterAuthentication/ProfileTab/NewPasswordScreen';
+import ChangeStatusScreen_profile from '../routes/afterAuthentication/ProfileTab/ChangeStatusScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,6 +68,11 @@ export const RootNavigation = () => {
       <Stack.Screen
         name="NewPasswordScreen_Profile"
         component={NewPasswordScreen_profile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ChangeStatusScreen_profile"
+        component={ChangeStatusScreen_profile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

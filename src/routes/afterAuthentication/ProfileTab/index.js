@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Dimensions, Image, ScrollView} from 'react-native';
+import {useIsFocused} from '@react-navigation/native';
 
 import {clearToken} from '../../../asyncStorage/token';
 import DataService from '../../../API/HTTP/services/data.service';
@@ -15,24 +16,31 @@ const h = Dimensions.get('window').height;
 
 export const ProfileTab = ({navigation}) => {
   const [userName, setUserName] = useState('');
+  const [userRating, setRating] = useState({sum: 1, amount: 1});
   const [userPhoto, setUserPhoto] = useState('');
+  const [kindOfSSActivity, setKindOfSSActivity] = useState('');
+
+  const isFocused = useIsFocused();
 
   const getUserRequest = async () => {
     await DataService.getUserData()
       .then(res => {
         if (res.data.success) {
-          const {name, photo} = res.data.data;
+          const {name, photo, rating, kindOfActivity} = res.data.data;
           setUserName(name);
           setUserPhoto(photo);
+          setRating(rating);
+          setKindOfSSActivity(kindOfActivity);
         }
       })
       .catch(e => {
         console.log(e);
       });
   };
+
   useEffect(() => {
     getUserRequest();
-  }, []);
+  }, [isFocused]);
 
   const logout = async () => {
     await DataService.logout();
@@ -51,13 +59,28 @@ export const ProfileTab = ({navigation}) => {
             style={styles.userPhoto}
           />
 
+          <TextBlock text={userName} size={1} lightBlue boldest />
+          <TextBlock text={kindOfSSActivity} size={3} lightBlue />
+
           <View style={styles.userName}>
-            <TextBlock text={userName || ''} size={1} lightBlue boldest />
+            <TextBlock
+              text={`Рейтинг - ${userRating.sum / userRating.amount} із 10`}
+              size={3}
+              deepBlue
+            />
           </View>
 
           <Button
-            label={'Змінити пароль'}
-            onPress={() => navigation.navigate('NewPasswordScreen_Profile')}
+            label={'Мій Instagram, Telegram...'}
+            // onPress={() => navigation.navigate('HistoryScreen')}
+            pink
+          />
+
+          <View style={styles.spacing} />
+
+          <Button
+            label={'Змінити статус'}
+            onPress={() => navigation.navigate('ChangeStatusScreen_profile')}
             pink
           />
 
@@ -96,6 +119,7 @@ const styles = StyleSheet.create({
     marginTop: h * 0.07,
   },
   userName: {
+    marginTop: w * 0.01,
     marginBottom: w * 0.12,
   },
   container: {

@@ -82,6 +82,20 @@ class DataService {
     }
   };
 
+  updateTypeOfActivity = async data => {
+    try {
+      let token = await getToken();
+
+      return http.put('/serviceSeller/updateTypeOfActivity', data, {
+        headers: {
+          Authorization: token,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   getUserData = async () => {
     try {
       let token = await getToken();
