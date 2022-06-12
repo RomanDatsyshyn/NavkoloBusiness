@@ -19,7 +19,7 @@ import DataService from '../../../API/HTTP/services/data.service';
 const w = Dimensions.get('window').width;
 const h = Dimensions.get('window').height;
 
-export const FeedTab = ({navigation, route}) => {
+export const FeedTab = () => {
   const [userId, setUserId] = useState('');
   const [feed, setFeed] = useState([]);
   const [connected, setConnected] = useState(false);
