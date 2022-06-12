@@ -68,19 +68,19 @@ class DataService {
     }
   };
 
-  // updatePassword = async data => {
-  //   try {
-  //     let token = await getToken();
+  updatePassword = async data => {
+    try {
+      let token = await getToken();
 
-  //     return http.put('/serviceSeller/updatePassword', data, {
-  //       headers: {
-  //         Authorization: token,
-  //       },
-  //     });
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+      return http.put('/serviceSeller/updatePassword', data, {
+        headers: {
+          Authorization: token,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   getUserData = async () => {
     try {
