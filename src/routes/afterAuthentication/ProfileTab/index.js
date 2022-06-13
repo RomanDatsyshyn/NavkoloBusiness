@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Dimensions, Image, ScrollView} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Image,
+  ScrollView,
+  ActivityIndicator,
+} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 
 import {clearToken} from '../../../asyncStorage/token';
@@ -50,62 +57,66 @@ export const ProfileTab = ({navigation}) => {
 
   return (
     <View style={styles.background}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
-          <Image
-            source={{
-              uri: `http://localhost:3001/${userPhoto}`,
-            }}
-            style={styles.userPhoto}
-          />
-
-          <TextBlock text={userName} size={1} lightBlue boldest />
-          <TextBlock text={kindOfSSActivity} size={3} lightBlue />
-
-          <View style={styles.userName}>
-            <TextBlock
-              text={`Рейтинг - ${userRating.sum / userRating.amount} із 10`}
-              size={3}
-              deepBlue
+      {userName === '' ? (
+        <ActivityIndicator size={70} color={colors.black} />
+      ) : (
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.container}>
+            <Image
+              source={{
+                uri: `http://localhost:3001/${userPhoto}`,
+              }}
+              style={styles.userPhoto}
             />
+
+            <TextBlock text={userName} size={1} lightBlue boldest />
+            <TextBlock text={kindOfSSActivity} size={3} lightBlue />
+
+            <View style={styles.userName}>
+              <TextBlock
+                text={`Рейтинг - ${userRating.sum / userRating.amount} із 10`}
+                size={3}
+                deepBlue
+              />
+            </View>
+
+            <Button
+              label={'Мій Instagram, Telegram...'}
+              onPress={() => navigation.navigate('ContactMeScreen_profile')}
+              pink
+            />
+
+            <View style={styles.spacing} />
+
+            <Button
+              label={'Змінити номер'}
+              // onPress={() => navigation.navigate('ChangeStatusScreen_profile')}
+              pink
+            />
+
+            <View style={styles.spacing} />
+
+            <Button
+              label={'Змінити статус'}
+              onPress={() => navigation.navigate('ChangeStatusScreen_profile')}
+              pink
+            />
+
+            <View style={styles.moreSpacing} />
+
+            <Button label={'Вийти'} onPress={() => logout()} />
+
+            <BottomLinks
+              firstText={'Маєте запитання?'}
+              secondText={'Напишіть нам!'}
+              route={'ContactUsScreen'}
+              navigation={navigation}
+            />
+            <View style={styles.moreSpacing} />
+            <View style={styles.moreSpacing} />
           </View>
-
-          <Button
-            label={'Мій Instagram, Telegram...'}
-            onPress={() => navigation.navigate('ContactMeScreen_profile')}
-            pink
-          />
-
-          <View style={styles.spacing} />
-
-          <Button
-            label={'Змінити номер'}
-            // onPress={() => navigation.navigate('ChangeStatusScreen_profile')}
-            pink
-          />
-
-          <View style={styles.spacing} />
-
-          <Button
-            label={'Змінити статус'}
-            onPress={() => navigation.navigate('ChangeStatusScreen_profile')}
-            pink
-          />
-
-          <View style={styles.moreSpacing} />
-
-          <Button label={'Вийти'} onPress={() => logout()} />
-
-          <BottomLinks
-            firstText={'Маєте запитання?'}
-            secondText={'Напишіть нам!'}
-            route={'ContactUsScreen'}
-            navigation={navigation}
-          />
-          <View style={styles.moreSpacing} />
-          <View style={styles.moreSpacing} />
-        </View>
-      </ScrollView>
+        </ScrollView>
+      )}
     </View>
   );
 };
