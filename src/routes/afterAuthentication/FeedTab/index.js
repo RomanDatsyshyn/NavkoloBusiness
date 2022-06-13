@@ -117,7 +117,6 @@ export const FeedTab = () => {
   }, [connected, connect, userId]);
 
   const [location, setLocation] = useState(null);
-  // const [location, setLocation] = useState(null);
 
   const hasPermissionIOS = async () => {
     const openSetting = () => {
