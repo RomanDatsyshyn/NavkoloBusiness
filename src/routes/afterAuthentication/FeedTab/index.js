@@ -126,7 +126,8 @@ export const FeedTab = () => {
       {feed.length === 0 && (
         <>
           <Image source={images.feedTabImage} style={styles.image} />
-          <TextBlock text={'Поки що замовлень немає'} size={2} deepBlue />
+          <TextBlock text={'Поки що замовлень'} size={2} deepBlue />
+          <TextBlock text={'немає'} size={2} deepBlue />
         </>
       )}
     </View>
