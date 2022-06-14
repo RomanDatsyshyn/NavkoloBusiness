@@ -32,6 +32,24 @@ export const feedTabOptions = {
   },
 };
 
+export const categoriesTabOptions = {
+  tabBarIcon: ({focused}) => (
+    <FontAwesomeIcon
+      icon={Icons.faPersonChalkboard}
+      size={w * 0.12}
+      style={{
+        color: focused ? colors.deepBlue : colors.lightGrey,
+      }}
+    />
+  ),
+  headerTitle: 'Категорії',
+  tabBarShowLabel: false,
+  headerTitleAlign: 'center',
+  tabBarIconStyle: {
+    marginTop: w * 0.05,
+  },
+};
+
 export const profileTabOptions = {
   tabBarIcon: ({focused}) => (
     <FontAwesomeIcon

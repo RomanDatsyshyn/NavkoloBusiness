@@ -137,6 +137,50 @@ class DataService {
       console.log(e);
     }
   };
+
+  getCategories = async () => {
+    try {
+      return http.get('/categories');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  deleteService = async id => {
+    try {
+      let token = await getToken();
+
+      return http.put(
+        `/serviceSeller/deleteService/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  addService = async id => {
+    try {
+      let token = await getToken();
+
+      return http.put(
+        `/serviceSeller/addService/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
 }
 
 export default new DataService();

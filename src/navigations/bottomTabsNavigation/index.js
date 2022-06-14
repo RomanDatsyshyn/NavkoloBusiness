@@ -5,8 +5,13 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import FeedTabScreen from '../../routes/afterAuthentication/FeedTab';
 import ProfileTabNavigation from '../profileTabNavigation';
+import CategoriesTabNavigation from '../categoriesTabNavigation';
 
-import {feedTabOptions, profileTabOptions} from './tabsOptions';
+import {
+  feedTabOptions,
+  categoriesTabOptions,
+  profileTabOptions,
+} from './tabsOptions';
 
 const w = Dimensions.get('window').width;
 
@@ -27,6 +32,11 @@ export default function TabNavigation() {
         name="Feed"
         component={FeedTabScreen}
         options={feedTabOptions}
+      />
+      <Tab.Screen
+        name="Categories"
+        component={CategoriesTabNavigation}
+        options={categoriesTabOptions}
       />
       <Tab.Screen
         name="Profile"
