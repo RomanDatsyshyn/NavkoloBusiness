@@ -110,6 +110,20 @@ class DataService {
     }
   };
 
+  updatePhone = async data => {
+    try {
+      let token = await getToken();
+
+      return http.put('/serviceSeller/updatePhone', data, {
+        headers: {
+          Authorization: token,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   getUserData = async () => {
     try {
       let token = await getToken();

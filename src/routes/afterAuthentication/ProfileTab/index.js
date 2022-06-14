@@ -90,7 +90,7 @@ export const ProfileTab = ({navigation}) => {
 
             <Button
               label={'Змінити номер'}
-              // onPress={() => navigation.navigate('ChangeStatusScreen_profile')}
+              onPress={() => navigation.navigate('ChangePhoneScreen_profile')}
               pink
             />
 
