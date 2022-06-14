@@ -11,6 +11,7 @@ import {colors} from '../../../../assets/colors';
 
 import ServiceItem from '../ServiceItem';
 import Input from '../../../../components/Input';
+import Button from '../../../../components/Button';
 import TextBlock from '../../../../components/TextBlock';
 
 import * as Icons from '@fortawesome/free-solid-svg-icons';
@@ -83,6 +84,13 @@ export const ListOfServicesScreen = ({
                 );
               }
             })}
+          <Button
+            label={'+ Додати власну'}
+            onPress={() => navigation.navigate('AddServiceScreen_categories')}
+            width={'100%'}
+            pink
+            bold
+          />
         </View>
       </ScrollView>
     </View>

@@ -26,6 +26,22 @@ class DataService {
     }
   };
 
+  addCategoryProposition = async data => {
+    try {
+      return http.post('/categories/addProposition', data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  addServiceProposition = async data => {
+    try {
+      return http.post('/service/addProposition', data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   logout = async () => {
     try {
       let token = await getToken();

@@ -8,6 +8,7 @@ const w = Dimensions.get('window').width;
 
 import Input from '../../../components/Input';
 import TextBlock from '../../../components/TextBlock';
+import Button from '../../../components/Button';
 
 import CategoryItem from './CategoryItem';
 
@@ -103,6 +104,13 @@ export const CategoriesTab = ({navigation}) => {
                 );
               }
             })}
+          <Button
+            label={'+ Додати власну'}
+            onPress={() => navigation.navigate('AddCategoryScreen_categories')}
+            width={'100%'}
+            pink
+            bold
+          />
         </View>
       </ScrollView>
     </View>

@@ -17,6 +17,9 @@ import ChangeStatusScreen_profile from '../routes/afterAuthentication/ProfileTab
 import ContactMeScreen_profile from '../routes/afterAuthentication/ProfileTab/ContactMeScreen';
 import ChangePhoneScreen_profile from '../routes/afterAuthentication/ProfileTab/ChangePhoneScreen';
 
+import AddCategoryScreen_categories from '../routes/afterAuthentication/CategoriesTab/AddCategoryScreen';
+import AddServiceScreen_categories from '../routes/afterAuthentication/CategoriesTab/AddServiceScreen';
+
 const Stack = createNativeStackNavigator();
 
 export const RootNavigation = () => {
@@ -85,6 +88,16 @@ export const RootNavigation = () => {
       <Stack.Screen
         name="ChangePhoneScreen_profile"
         component={ChangePhoneScreen_profile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="AddCategoryScreen_categories"
+        component={AddCategoryScreen_categories}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="AddServiceScreen_categories"
+        component={AddServiceScreen_categories}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
