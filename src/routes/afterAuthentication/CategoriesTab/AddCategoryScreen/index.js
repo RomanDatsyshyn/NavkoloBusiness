@@ -33,7 +33,7 @@ export const AddCategoryScreen = ({navigation, navigation: {goBack}}) => {
   const addCategory = async data => {
     await DataService.addCategoryProposition(data)
       .then(res => {
-        if (res.status === 200) {
+        if (res.status === 201) {
           AlertBox(
             'Успішно!',
             'Після модерації дана категорія буде додана. Дякуємо за ініціативу!)',

@@ -49,7 +49,7 @@ export const RegistrationScreen = ({navigation, navigation: {goBack}}) => {
   const registrationRequest = async data => {
     await DataService.register(data)
       .then(res => {
-        res.data.success
+        res.status === 201
           ? navigation.navigate('LoginScreen')
           : AlertBox('Сталася помилка', res.data.errors);
       })

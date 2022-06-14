@@ -33,7 +33,7 @@ export const AddServiceScreen = ({navigation, navigation: {goBack}}) => {
   const addService = async data => {
     await DataService.addServiceProposition(data)
       .then(res => {
-        if (res.status === 200) {
+        if (res.status === 201) {
           AlertBox(
             'Успішно!',
             'Після модерації дана послуга буде додана. Дякуємо за ініціативу!)',
